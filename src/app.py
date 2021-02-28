@@ -185,8 +185,6 @@ tab3_content = html.Div(
         html.Br(),
         html.Br(),
         html.Br(),
-        html.Br(),
-        html.Br(),
         dbc.Row(
             [
                 dbc.Col(html.Div("Trend 3 - Placeholder")),

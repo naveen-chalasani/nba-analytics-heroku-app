@@ -329,7 +329,7 @@ tabs = html.Div(
                     ],
                     label="Player stats",
                     style={"padding": "10px"},
-                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger", "background-color": "#e6f2ff"},
+                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger", "background-color": "#f4f6f6"},
                     active_label_style={"color": "#DC143C", "font-weight": "bold", "font-size": "larger", "background-color": "#FFEFD5"}
                 ),
                 dbc.Tab(children=[
@@ -338,7 +338,7 @@ tabs = html.Div(
                     ],
                     label="Advanced Analytics",
                     style={"padding": "10px"},
-                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger", "background-color": "#e6f2ff"},
+                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger", "background-color": "#f4f6f6"},
                     active_label_style={"color": "#DC143C", "font-weight": "bold", "font-size": "larger", "background-color": "#FFEFD5"}
                 ),
                 dbc.Tab(children=[
@@ -347,7 +347,7 @@ tabs = html.Div(
                     ],
                     label="NBA trends",
                     style={"padding": "10px"},
-                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger", "background-color": "#e6f2ff"},
+                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger", "background-color": "#f4f6f6"},
                     active_label_style={"color": "#DC143C", "font-weight": "bold", "font-size": "larger", "background-color": "#FFEFD5"}
                 )
             ]

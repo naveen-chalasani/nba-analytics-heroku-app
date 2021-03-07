@@ -10,14 +10,11 @@ import pandas as pd
 
 alt.renderers.set_embed_options(actions=False)
 
-# DBC_DOCS = "https://dash-bootstrap-components.opensource.faculty.ai/"
-# DBC_GITHUB = "https://github.com/facultyai/dash-bootstrap-components"
-
 # DATA
 
 # ALl the player data for NBA
 columns_to_skip = ['birth_year', 'birth_month', 'height','height_cm', 'weight', 'weight_kg', 'nationality', 'high_school', 'draft_round', 'draft_pick', 'draft_team']
-player_data = pd.read_csv('https://github.com/naveen-chalasani/nba-analytics-heroku-app/raw/main/src/players_stats_by_season_full_details.csv', usecols = lambda x: x not in columns_to_skip)
+player_data = pd.read_csv('https://github.com/naveen-chalasani/nba-analytics-heroku-app/raw/main/data/players_stats_by_season_full_details.csv', usecols = lambda x: x not in columns_to_skip)
 player_data = player_data[player_data['League'] == 'NBA'].drop('League', axis = 1)
 player_data['birth_date'] = pd.to_datetime(player_data['birth_date'], format='%b %d, %Y')
 player_data['Season'] = pd.to_numeric(player_data['Season'].str.split(expand = True)[0])
@@ -244,7 +241,6 @@ tab1_content = html.Div(
                         style={'border-width': '1', 'border-color': '#DCDCDC', 'width': '345px', 'height': '300px'}), width = 4)
             ]
         ),
-        html.Br(),
         dbc.Row(
             [
                 dbc.Col(
@@ -278,7 +274,6 @@ tab2_content = html.Div(
                         style={'border-width': '1', 'border-color': '#DCDCDC', 'width': '530px', 'height': '300px'}), width = 6)
             ]
         ),
-        html.Br(),
         dbc.Row(
             [
                 dbc.Col(
@@ -326,7 +321,6 @@ tab3_content = html.Div(
 tabs = html.Div(
     [
         html.H2("NBA Analytics Dashboard"),
-        html.Br(),
         dbc.Tabs(
             [
                 dbc.Tab(children=[
@@ -335,7 +329,7 @@ tabs = html.Div(
                     ],
                     label="Player stats",
                     style={"padding": "10px"},
-                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger"},
+                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger", "background-color": "#e6f2ff"},
                     active_label_style={"color": "#DC143C", "font-weight": "bold", "font-size": "larger", "background-color": "#FFEFD5"}
                 ),
                 dbc.Tab(children=[
@@ -344,7 +338,7 @@ tabs = html.Div(
                     ],
                     label="Advanced Analytics",
                     style={"padding": "10px"},
-                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger"},
+                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger", "background-color": "#e6f2ff"},
                     active_label_style={"color": "#DC143C", "font-weight": "bold", "font-size": "larger", "background-color": "#FFEFD5"}
                 ),
                 dbc.Tab(children=[
@@ -353,7 +347,7 @@ tabs = html.Div(
                     ],
                     label="NBA trends",
                     style={"padding": "10px"},
-                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger"},
+                    label_style={"color": "#4682B4", "font-weight": "bold", "font-size": "larger", "background-color": "#e6f2ff"},
                     active_label_style={"color": "#DC143C", "font-weight": "bold", "font-size": "larger", "background-color": "#FFEFD5"}
                 )
             ]

@@ -110,44 +110,85 @@ server = app.server
 
 # cards
 first_card = dbc.Card(
-    dbc.CardBody(
+    dbc.CardBody(children=
         [
             html.P("Career FG%", className="card-title"),
-            html.H5("53.5%")
+            html.H5(id="card-01")
         ]
     ),
     color='info', inverse=True, style={'text-align': 'center'}
 )
 
 second_card = dbc.Card(
-    dbc.CardBody(
+    dbc.CardBody(children=
         [
             html.P("Career FT%", className="card-title"),
-            html.H5("93.5%")
+            html.H5(id="card-02")
         ]
     ),
     color='secondary', inverse=True, style={'text-align': 'center'}
 )
 
 third_card = dbc.Card(
-    dbc.CardBody(
+    dbc.CardBody(children=
         [
             html.P("Career 3-pt %", className="card-title"),
-            html.H5("36.5%")
+            html.H5(id="card-03")
         ]
     ),
     color='info', inverse=True, style={'text-align': 'center'}
 )
 
 fourth_card = dbc.Card(
-    dbc.CardBody(
+    dbc.CardBody(children=
         [
             html.P("Avg Minutes per game", className="card-title"),
-            html.H5("43")
+            html.H5(id="card-04")
         ]
     ),
     color='secondary', inverse=True, style={'text-align': 'center'}
 )
+
+fifth_card = dbc.Card(
+    dbc.CardBody(children=
+        [
+            html.P("Career FG%", className="card-title"),
+            html.H5(id="card-05")
+        ]
+    ),
+    color='info', inverse=True, style={'text-align': 'center'}
+)
+
+sixth_card = dbc.Card(
+    dbc.CardBody(children=
+        [
+            html.P("Career FT%", className="card-title"),
+            html.H5(id="card-06")
+        ]
+    ),
+    color='secondary', inverse=True, style={'text-align': 'center'}
+)
+
+seventh_card = dbc.Card(
+    dbc.CardBody(children=
+        [
+            html.P("Career 3-pt %", className="card-title"),
+            html.H5(id="card-07")
+        ]
+    ),
+    color='info', inverse=True, style={'text-align': 'center'}
+)
+
+eighth_card = dbc.Card(
+    dbc.CardBody(children=
+        [
+            html.P("Avg Minutes per game", className="card-title"),
+            html.H5(id="card-08")
+        ]
+    ),
+    color='secondary', inverse=True, style={'text-align': 'center'}
+)
+
 
 cards = dbc.Row(
     [
@@ -158,6 +199,14 @@ cards = dbc.Row(
     ]
 )
 
+cards_tab2 = dbc.Row(
+    [
+        dbc.Col(fifth_card, width=3), 
+        dbc.Col(sixth_card, width=3),
+        dbc.Col(seventh_card, width=3), 
+        dbc.Col(eighth_card, width=3)
+    ]
+)
 # dropdowns
 first_dropdown = html.Div(
     [
@@ -260,7 +309,7 @@ tab2_content = html.Div(
     [
         dropdowns2,
         html.Br(),
-        cards,
+        cards_tab2,
         html.Br(),
         dbc.Row(
             [
@@ -370,7 +419,69 @@ app.layout = html.Div(
 # Set up callbacks/backend
 
 # metrics
+@app.callback(
+    Output(component_id="card-01", component_property="children"), 
+    Input("player-widget", "value"),
+    Input('stage-widget', 'value'))
+def metric_FG(player, stage):
+    career_FG = df_metrics[(df_metrics['Player'] == player) & (df_metrics['Stage'] == stage)]['career_FG_%'].iloc[0]
+    return (str(career_FG) + ' %')
 
+@app.callback(
+    Output(component_id="card-02", component_property="children"), 
+    Input("player-widget", "value"),
+    Input('stage-widget', 'value'))
+def metric_FT(player, stage):
+    career_FT = df_metrics[(df_metrics['Player'] == player) & (df_metrics['Stage'] == stage)]['career_FT_%'].iloc[0]
+    return (str(career_FT) + ' %')
+
+@app.callback(
+    Output(component_id="card-03", component_property="children"), 
+    Input("player-widget", "value"),
+    Input('stage-widget', 'value'))
+def metric_3PT(player, stage):
+    career_3PT = df_metrics[(df_metrics['Player'] == player) & (df_metrics['Stage'] == stage)]['career_3PT_%'].iloc[0]
+    return (str(career_3PT) + ' %')
+
+@app.callback(
+    Output(component_id="card-04", component_property="children"), 
+    Input("player-widget", "value"),
+    Input('stage-widget', 'value'))
+def metric_minutes(player, stage):
+    avg_minutes = df_metrics[(df_metrics['Player'] == player) & (df_metrics['Stage'] == stage)]['Minutes_per_game'].iloc[0]
+    return str(avg_minutes) + ' minutes'
+
+@app.callback(
+    Output(component_id="card-05", component_property="children"), 
+    Input("player-widget", "value"),
+    Input('stage-widget', 'value'))
+def metric_FG(player, stage):
+    career_FG = df_metrics[(df_metrics['Player'] == player) & (df_metrics['Stage'] == stage)]['career_FG_%'].iloc[0]
+    return (str(career_FG) + ' %')
+
+@app.callback(
+    Output(component_id="card-06", component_property="children"), 
+    Input("player-widget", "value"),
+    Input('stage-widget', 'value'))
+def metric_FT(player, stage):
+    career_FT = df_metrics[(df_metrics['Player'] == player) & (df_metrics['Stage'] == stage)]['career_FT_%'].iloc[0]
+    return (str(career_FT) + ' %')
+
+@app.callback(
+    Output(component_id="card-07", component_property="children"), 
+    Input("player-widget", "value"),
+    Input('stage-widget', 'value'))
+def metric_3PT(player, stage):
+    career_3PT = df_metrics[(df_metrics['Player'] == player) & (df_metrics['Stage'] == stage)]['career_3PT_%'].iloc[0]
+    return (str(career_3PT) + ' %')
+
+@app.callback(
+    Output(component_id="card-08", component_property="children"), 
+    Input("player-widget", "value"),
+    Input('stage-widget', 'value'))
+def metric_minutes(player, stage):
+    avg_minutes = df_metrics[(df_metrics['Player'] == player) & (df_metrics['Stage'] == stage)]['Minutes_per_game'].iloc[0]
+    return str(avg_minutes) + ' minutes'
 
 # tab 1
 @app.callback(
@@ -472,7 +583,7 @@ def plot_altair(xcol, ycol):
         y = alt.Y('Game Score', title = 'Game Score', scale=alt.Scale(zero=False)),
         x = alt.X('Season:O'),
         tooltip=['Player', 'Stage', 'Season', 'Game Score']
-        ).properties(title='Average Game Score by Season', width=430, height = 190)
+        ).properties(title='Player Productivity by Season', width=430, height = 190)
     return chart.to_html()
 
 @app.callback(
@@ -485,7 +596,7 @@ def plot_altair(xcol, ycol):
         y = alt.Y('Game Score', scale=alt.Scale(zero=False)),
         color = alt.Color('Stage', legend = alt.Legend(orient = 'bottom', title = "")),
         tooltip=['Player', 'Stage', 'Minutes Played', 'Game Score']
-        ).properties(title='Minutes Played vs. Game Score', width=430, height = 160)
+        ).properties(title='Player Productivity by Minutes Played', width=430, height = 160)
     return chart.to_html()
 
 if __name__ == "__main__":

@@ -348,6 +348,7 @@ NBA_playoff_seasons['Type'] = pcol
 type_seasons = NBA_reg_seasons.append(NBA_playoff_seasons)
 
 #------------------------------------------------------------#
+
 # Setup app and layout/frontend
 app = dash.Dash(name='NBA Analytics Dashboard', title='NBA Analytics Dashboard', external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
